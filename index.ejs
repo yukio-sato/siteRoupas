@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="css/media/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/geral.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <!-- FONTE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <title>Ilha das True</title>
+</head>
+
+<body>
+    <header>
+        <div id="h-content">
+            <div id="h-logos">
+                <img id="h-icon" src="css/media/logo.png" alt="Logo">
+                <img id="h-logotxt" src="css/media/logo escrita.png" alt="Ilha das True">
+            </div>
+            <img id="menu" src="css/media/carrinho.png">
+            <img id="menu" src="css/media/instagram2.png">
+            <a href="javascript:void(0);" onclick="Menu()">
+                <img id="menu2" src="css/media/hmbrgr.png" alt="hmburgr">
+            </a>
+            <% if (login == 'false'){ %>
+                <form action="cadastrar" method="post">
+                    <button class="CDbtn"> Entrar </button>
+                </form>
+            <% } else { %>
+                <button class="CDbtn"> Logado </button>
+            <% } %>
+        </div>
+
+        <div id="topicos">
+            <a href="">Adidas</a>
+            <a href="">Lacoste</a>
+            <a href="">Nike</a>
+            <a href="">Ver Mais</a>
+        </div>
+    </header>
+
+    <div id="Gray">
+        <img src="css/media/logo brilhante.png" alt="Coqueiro verde em uma praia ao por do sol" id="LogoBig"
+            width="25%">
+
+        <div id="GrayRight">
+            <div class="textos">
+                <img src="css/media/logo escrita.png" id="LogoEscr">
+                <p>Bem-vindo à Ilha das True! <br>
+                    Um rolê cheio de estilo
+                    com as marcas que fazem sua vibe.</p>
+
+                <p2>Descubra a marca ideal pro seu estilo</p2>
+            </div>
+
+            <div class="btns">
+                <button class="Nbtn" onclick="location.href='#Nike'"> Nike </button>
+                <button class="Abtn" onclick="location.href='#Adidas'"> Adidas </button>
+                <button class="Lbtn" onclick="location.href='#Lacoste'"> Lacoste </button>
+                <button class="VMbtn"> Ver Mais </button>
+            </div>
+
+            <div class="btnMobile">
+                <button class="EEbtn"> Explorar Estilos </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="Nike">
+        <div id="TopSecao">
+            <div id="Secao">
+                Seção de camisetas Nike
+                <button class="VMbtn"> Ver Mais </button>
+            </div>
+            <img src="css/media/nike logo.png" alt="logo da nike" id="LogoBrand2">
+            <img src="css/media/nike logo.png" alt="logo da nike" id="LogoBrand">
+        </div>
+
+        <div id="RoupasSecao">
+            
+            <% data.forEach((entry)=> {%>
+                <% if (entry.cat_roupa == 'Nike'){ %>
+                <form class="Roupas" id="<%= entry.cd_roupa %>" action="produto" method="post">
+                    <input type="hidden" name="hiddenVl" value="<%= entry.nm_roupa %>">
+                    <input type="hidden" name="hiddenVl3" value="<%= entry.cat_roupa %>">
+                    <img src="<%= entry.url_roupa %>" alt="<%= entry.nm_roupa %>" id="RoupaImg">
+                    <%= entry.nm_roupa %>
+                    <h1>R$<%= entry.vl_roupa %></h1>
+                    <input type="submit" class="BuyNike" id="<%= entry.cd_roupa %>" value="Comprar">
+                </form>
+                <% } %>
+            <% }) %>
+            </div>
+        <img src="css/media/pessoa nike.png" alt="" id="BcgnrPeople">
+    </div>
+
+    <div id="Adidas">
+        <div id="TopSecao">
+            <div id="Secao">
+                Seção de camisetas Adidas
+                <button class="VMbtn"> Ver Mais </button>
+            </div>
+            <img src="css/media/adidas logo.png" alt="logo da Adidas" id="LogoBrand2">
+            <img src="css/media/adidas logo.png" alt="logo da Adidas" id="LogoBrand">
+        </div>
+
+        <div id="RoupasSecao">
+
+            <% data.forEach((entry)=> {%>
+                <% if (entry.cat_roupa == 'Adidas'){ %>
+                <form class="Roupas" id="<%= entry.cd_roupa %>" action="produto" method="post">
+                    <input type="hidden" name="hiddenVl" value="<%= entry.nm_roupa %>">
+                    <input type="hidden" name="hiddenVl3" value="<%= entry.cat_roupa %>">
+                    <img src="<%= entry.url_roupa %>" alt="<%= entry.nm_roupa %>" id="RoupaImg">
+                    <%= entry.nm_roupa %>
+                    <h1>R$<%= entry.vl_roupa %></h1>
+                    <input type="submit" class="BuyNike" id="<%= entry.cd_roupa %>" value="Comprar">
+                </form>
+                <% } %>
+            <% }) %>
+        </div>
+        <img src="css/media/pessoa adidas.png" alt="" id="BcgnrPeople">
+    </div>
+
+    <div id="Lacoste">
+        <div id="TopSecao">
+            <div id="Secao">
+                Seção de camisetas Lacoste
+                <button class="VMbtn"> Ver Mais </button>
+            </div>
+            <img src="css/media/lacoste logo.png" alt="logo da Lacoste" id="LacosteBrand2">
+            <img src="css/media/lacoste logo.png" alt="logo da Lacoste" id="LacosteBrand">
+        </div>
+
+        <div id="RoupasSecao">
+
+            <% data.forEach((entry)=> {%>
+                <% if (entry.cat_roupa == 'Lacoste'){ %>
+                <form class="Roupas" id="<%= entry.cd_roupa %>" action="produto" method="post">
+                    <input type="hidden" name="hiddenVl" value="<%= entry.nm_roupa %>">
+                    <input type="hidden" name="hiddenVl3" value="<%= entry.cat_roupa %>">
+                    <img src="<%= entry.url_roupa %>" alt="<%= entry.nm_roupa %>" id="RoupaImg">
+                    <%= entry.nm_roupa %>
+                    <h1>R$<%= entry.vl_roupa %></h1>
+                    <input type="submit" class="BuyNike" id="<%= entry.cd_roupa %>" value="Comprar">
+                </form>
+                <% } %>
+            <% }) %>
+        </div>
+        <img src="css/media/lacostebckgndppl.png" alt="" id="BcgnrPeople">
+    </div>
+
+    <div id="VerMais">
+        <div id="TopSecao">
+            <div id="Secao">
+                Seção com roupas diversas
+                <button class="VMbtn"> Ver Tudo </button>
+            </div>
+        </div>
+
+        
+        <div id="RoupasSecao">
+            <% data.forEach((entry)=> {%>
+                <% if (entry.cat_roupa != 'Nike' && entry.cat_roupa != 'Adidas' && entry.cat_roupa != 'Lacoste'){ %>
+                <form class="Roupas" id="<%= entry.cd_roupa %>" action="produto" method="post">
+                    <input type="hidden" name="hiddenVl" value="<%= entry.nm_roupa %>">
+                    <input type="hidden" name="hiddenVl3" value="<%= entry.cat_roupa %>">
+                    <img src="<%= entry.url_roupa %>" alt="<%= entry.nm_roupa %>" id="RoupaImg">
+                    <%= entry.nm_roupa %>
+                    <h1>R$<%= entry.vl_roupa %></h1>
+                    <input type="submit" class="BuyNike" id="<%= entry.cd_roupa %>" value="Comprar">
+                </form>
+                <% } %>
+            <% }) %>
+        </div>
+    </div>
+
+    <div id="footer">
+        Site desenvolvido por<a href="https://github.com/niButera">Nicolas Butera</a>e<a href="https://github.com/yukio-sato">Yukio Sato</a>
+    </div>
+
+    <script src="js/hamburguer.js"></script>
+</body>
+
+</html>
