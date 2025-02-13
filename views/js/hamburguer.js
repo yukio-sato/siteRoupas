@@ -11,3 +11,10 @@ function Menu() {
     }
 }
 
+// function buy(id){
+//     var send = { "id":id};
+//     var sendString = JSON.stringify(send);
+//     // alert(sendString);
+//     xhttp.send(send);
+//     window.location.href = "/produto.ejs";
+// }

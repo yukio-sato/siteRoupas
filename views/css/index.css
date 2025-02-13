@@ -7,19 +7,7 @@
     display: flex;
 }
 
-#footer {
-    background-color: rgba(23, 23, 23, 1);
-    font-family: "Inter", serif;
-    justify-content: center;
-    align-items: center;
-    font-size: 13px;
-    padding: 20px;
-    color: #fff;
-    display: flex;
-    gap: 2px;
-}
-
-#Nike, #Adidas, #Lacoste {
+#Nike, #Adidas, #Lacoste, #VerMais {
     font-family: "Inter", serif;
     position: relative;
     overflow: hidden;
@@ -38,6 +26,10 @@
 
 #Lacoste {
     background: linear-gradient(to bottom, rgb(54, 167, 1), rgb(141, 245, 92));
+}
+
+#VerMais {
+    background: linear-gradient(to top, rgba(31, 31, 31, 0),  rgb(0, 177, 212));
 }
 
 /* DIVISÕES */
@@ -70,7 +62,7 @@
     z-index: 1;
 }
 
-#Roupas:hover {
+.Roupas:hover {
     transform: scale(1.1);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -117,11 +109,6 @@
 
 #LogoEscr {
     width: 40%;
-}
-
-#LogoDown {
-    width: 10%;
-    padding-bottom: 20px;
 }
 
 #RoupaImg {
@@ -173,6 +160,10 @@
     background: linear-gradient(45deg, rgba(242, 88, 47, 1), rgba(155, 0, 62, 1));
 }
 
+.CDbtn {
+    background: linear-gradient(45deg, rgb(47, 109, 242),rgba(1, 204, 245, 1));
+}
+
 .EEbtn {
     visibility: hidden;
 }
@@ -185,6 +176,7 @@
 .Abtn,
 .Nbtn,
 .Lbtn,
+.CDbtn,
 .VMbtn {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.568);
@@ -199,39 +191,22 @@
     border: 0px;
 }
 
-.Abtn:hover {
-    transform: scale(1.1);
+.Abtn:hover, .Nbtn:hover, .Lbtn:hover, .VMbtn:hover, .CDbtn, .BuyNike:hover, .BuyAdidas:hover, .BuyLacoste:hover, .BuyMore:hover {
+    transform: scale(1.04);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.Nbtn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+/* FONTES */
+h1 {
+    color: rgb(247, 114, 77);
 }
 
-.Lbtn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+h2 {
+    color: rgba(1, 204, 245, 1);
 }
 
-.VMbtn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.BuyNike:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-.BuyAdidas:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-.BuyLacoste:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+h3 {
+    color:  rgb(141, 245, 92);
 }
 
 /* MOBILE*/
@@ -359,7 +334,7 @@
     }
 
     @media (hover: none) and (pointer: coarse) {
-        #Roupas:hover {
+        .Roupas:hover {
             transform: none;
             box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.726);
         }
