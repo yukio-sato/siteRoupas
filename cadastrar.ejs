@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="css/media/logo.png">
+    <link rel="stylesheet" href="css/geral.css">
+    <link rel="stylesheet" href="css/cadastrar.css">
+
+    <!-- FONTE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <div id="main-content">
+        
+        <div id="cadastro">
+         <img src="css/media/lohgofull.png" id="loogo">
+            <form id="box" action="userCadastrar" method="post">
+                <h1> Cadastro </h1>
+                <p> Prossiga com o cadastro</p>
+                <input placeholder="Nome" id="nome" name="nome" type="text" maxlength="45" class="ImputBox validate" required value="<%= nome %>">
+                <h1 class="alerta"><%= msg %></h1>
+                <input placeholder="E-Mail" id="email" name="email" type="email" maxlength="45" class="ImputBox validate" required value="<%= email %>">
+                <input placeholder="Senha" id="senha" name="senha" type="password" maxlength="45" class="ImputBox validate" required value="<%= senha %>">
+                <button id="done"> Concluir Cadastro</button>
+                
+                <p> Já possuí um cadastro? <a href="entrar">Entre</a></p>
+            </form>
+        </div>
+        <button id="back" onclick="location.href='/'">Voltar para o Inicio</button>
+    </div>
+
+    <div id="footer">
+        Site desenvolvido por<a href="https://github.com/niButera">Nicolas Butera</a>e<a
+            href="https://github.com/yukio-sato">Yukio Sato</a>
+    </div>
+</body>
+
+</html>
