@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Seleciona todas as imagens
   const imgUrl = document.querySelectorAll(".C-ImgBig");
+  var imgAnterior;
+  imgUrl.forEach((imageTag) => { if(imageTag.getAttribute("hidden") == null){ imgAnterior = imageTag.id } });
 
   // Adiciona evento de clique aos botões de tamanho
   sizeButtons.forEach((button) => {
@@ -32,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Adiciona a classe 'selected' ao botão de cor clicado
       button.classList.add("selected");
       corSelecionada = button.textContent;
-      var imgAnterior;
+      imgAnterior = '';
       imgUrl.forEach((imageTag) => { if(imageTag.getAttribute("hidden") == null){ imgAnterior = imageTag.id } });
       var selectedImg = document.getElementById(button.id);
       if (selectedImg.getAttribute("src") != null && imgAnterior != selectedImg){
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let numeroLoja = "5513996718928"; // Substitua pelo número correto da loja
-    let mensagem = `Olá, gostaria de saber se a peça de roupa ${produto} do tamanho ${tamanhoSelecionado} na cor ${corSelecionada} está disponível.`;
+    let mensagem = `Olá, gostaria de saber se a peça de roupa *${produto}* do tamanho *${tamanhoSelecionado}* na cor *${corSelecionada}* da marca *${document.getElementById("marked").textContent.substring(7)}* está disponível.`;
     let linkWhatsApp = `https://api.whatsapp.com/send?phone=${numeroLoja}&text=${encodeURIComponent(mensagem)}`;
 
     // window.open(linkWhatsApp, "_blank");

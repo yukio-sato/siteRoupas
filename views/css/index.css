@@ -122,7 +122,7 @@
 }
 
 /* BOTÕES */
-.BuyNike, .BuyAdidas, .BuyLacoste {
+.BuyNike, .BuyAdidas, .BuyLacoste, .BuyMore {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.726);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -148,6 +148,10 @@
     background-color: rgb(6, 199, 22);
 }
 
+.BuyMore {
+    background-color:  rgb(0, 177, 212);
+}
+
 .Abtn {
     background: linear-gradient(45deg, rgba(67, 8, 106, 1), rgba(1, 204, 245, 1));
 }
@@ -158,10 +162,6 @@
 
 .Nbtn {
     background: linear-gradient(45deg, rgba(242, 88, 47, 1), rgba(155, 0, 62, 1));
-}
-
-.CDbtn {
-    background: linear-gradient(45deg, rgb(47, 109, 242),rgba(1, 204, 245, 1));
 }
 
 .EEbtn {
@@ -176,7 +176,6 @@
 .Abtn,
 .Nbtn,
 .Lbtn,
-.CDbtn,
 .VMbtn {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.568);
@@ -191,7 +190,7 @@
     border: 0px;
 }
 
-.Abtn:hover, .Nbtn:hover, .Lbtn:hover, .VMbtn:hover, .CDbtn, .BuyNike:hover, .BuyAdidas:hover, .BuyLacoste:hover, .BuyMore:hover {
+.Abtn:hover, .Nbtn:hover, .Lbtn:hover, .VMbtn:hover, .BuyNike:hover, .BuyAdidas:hover, .BuyLacoste:hover, .BuyMore:hover {
     transform: scale(1.04);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }

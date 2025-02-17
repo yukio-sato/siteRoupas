@@ -21,7 +21,7 @@ app.use(express.static(__dirname + '/views'));
 // Process application/json
 app.use(bodyParser.json());
 
-app.get('/', function (req, res) {
+function showClothes(response,logged){
     var roupas = [];
     connection.query('SELECT * FROM tb_roupa', function(err, results, fields)   {
         if (err) throw err;
@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
         for (let i2 = 0; i2 < results.length; i2++) {
             var hasClothe = false;
             for (let i = 0; i < roupas.length; i++) {
-                if (roupas[i].nm_roupa == results[i2].nm_roupa){
+                if (roupas[i].nm_roupa == results[i2].nm_roupa && roupas[i].cat_roupa == results[i2].cat_roupa){
                     hasClothe = true;
                 }
             }
@@ -37,16 +37,49 @@ app.get('/', function (req, res) {
                 roupas.push(results[i2]);
             }         
         }
-        return res.render('index', { data: roupas, login: 'false' });
+        return response.render('index', { data: roupas, login: logged });
     });
+}
+
+app.get('/', function (req, res) {
+    showClothes(res,'false');
 });
 
-app.post('/cadastrar', function (req, res) {
+app.post('/', function (req, res) {
+    showClothes(res,req.body.logged);
+});
+
+
+app.get('/cadastrar', function (req, res) {
     res.render('cadastrar', {nome: '' , email: '', senha: '', msg:'' });
 });
 
 app.get('/entrar', function (req, res) {
     res.render('entrar', { msg:'' });
+});
+
+
+app.post('/historico', function (req, res) {
+    console.log(req.body);
+    console.log(req.body.logged);
+    console.log('=============================');
+    connection.query(`SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));`);
+    connection.query(`
+        SELECT *
+        from tb_historico as h
+        join tb_roupa as r
+        on h.fk_cd_roupa = r.cd_roupa
+        and h.fk_email_usuario = '`+req.body.logged+`'
+        group by r.cd_roupa
+        order by h.cd_historico desc;
+        `, function(err, results, fields)   {
+            if (results.length > 0){
+                return res.render('historico', { data: results, login: req.body.logged });
+            } else{
+                return res.render('historico', { data: 'Vazio', login: req.body.logged });
+            }
+        }
+    );
 });
 
 app.post('/userCadastrar', function (req, res) {
@@ -58,7 +91,6 @@ app.post('/userCadastrar', function (req, res) {
         // console.log(results);
         if (results.length > 0){
             return res.render('cadastrar', {nome: req.body.nome, email: req.body.email, senha: req.body.senha, msg: 'Este Email Já Existe.'});
-            
         } else {
             connection.query(`
                 INSERT Into tb_usuario
@@ -71,23 +103,7 @@ app.post('/userCadastrar', function (req, res) {
                 if (err) throw err;
                 // console.log(results);
     
-                var roupas = [];
-                connection.query('SELECT * FROM tb_roupa', function(err, results, fields)   {
-                    if (err) throw err;
-                    // console.log(results);
-                    for (let i2 = 0; i2 < results.length; i2++) {
-                        var hasClothe = false;
-                        for (let i = 0; i < roupas.length; i++) {
-                            if (roupas[i].nm_roupa == results[i2].nm_roupa){
-                                hasClothe = true;
-                            }
-                        }
-                        if (hasClothe == false) {
-                            roupas.push(results[i2]);
-                        }         
-                    }
-                    return res.render('index', { data: roupas, login: 'true' });
-                });
+                showClothes(res,req.body.email);
             });
         }
     });
@@ -104,23 +120,7 @@ app.post('/userLog', function (req, res) {
         if (results.length <= 0){
             return res.render('entrar', {msg: 'Email ou Senha Incorretos'});
         } else {
-            var roupas = [];
-            connection.query('SELECT * FROM tb_roupa', function(err, results, fields)   {
-                if (err) throw err;
-                // console.log(results);
-                for (let i2 = 0; i2 < results.length; i2++) {
-                    var hasClothe = false;
-                    for (let i = 0; i < roupas.length; i++) {
-                        if (roupas[i].nm_roupa == results[i2].nm_roupa){
-                            hasClothe = true;
-                        }
-                    }
-                    if (hasClothe == false) {
-                        roupas.push(results[i2]);
-                    }         
-                }
-                return res.render('index', { data: roupas, login: 'true' });
-            });
+            showClothes(res,req.body.email);
         }
     });
 });
@@ -167,8 +167,21 @@ app.post('/produto', function (req, res) {
                 images.push(results[i2].url_roupa);
             }
         }
-        // console.log(cores+" BAGUA / "+tamanho);
-        return res.render('produto', { data: results, color: cores, size: tamanho, url: images });
+        // console.log(cores+" Cor / "+tamanho+" Tamanho");
+        if (req.body.logged != 'false' && req.body.viewing == 'false'){
+            connection.query(`
+                INSERT Into tb_historico
+                values(
+                    null,
+                    '`+req.body.logged+`',
+                    `+results[0].cd_roupa+`
+                );
+                `, function(err, results, fields)   {
+                if (err) throw err;
+                // console.log(results);
+            });
+        }
+        return res.render('produto', { data: results, color: cores, size: tamanho, url: images, login: req.body.logged });
     });
 });
 

@@ -133,6 +133,7 @@ body.menu-open {
     position: absolute;
     text-align: center;
     overflow: hidden;
+    visibility: hidden;
     display: flex;
     max-height: 0;
     width: 100%;
@@ -143,6 +144,10 @@ body.menu-open {
     max-height: 500px;
 }
 
+#topicos form {
+    padding: 15px;
+}
+
 #topicos a {
     font-family: "Inter", sans-serif;
     color: rgb(233, 233, 233);
@@ -151,6 +156,21 @@ body.menu-open {
     font-weight: bold;
     font-size: 15px;
     padding: 15px;
+}
+
+#topicos form button {
+    font-family: "Inter", sans-serif;
+    color: rgb(233, 233, 233);
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: transparent;
+    border: none;
+}
+
+#topicos form button:hover {
+    cursor: pointer;
 }
 
 #midias {
@@ -197,6 +217,29 @@ body.menu-open {
     background-size: 23px;
 }
 
+/* Botão de Login */
+.CDbtn {
+    background: linear-gradient(45deg, rgb(47, 109, 242),rgba(1, 204, 245, 1));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.568);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 10px 10px 10px 0px;
+    border-radius: 50px;
+    padding: 10px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    color: white;
+    border: 0px;
+}
+
+.CDbtn:hover{
+    transform: scale(1.04);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+
 @media screen and (max-width: 768px) {
     #h-content {
         justify-content: space-between;
@@ -216,5 +259,9 @@ body.menu-open {
     #menu2 {
         display: block;
         width: 23px;
+    }
+
+    #topicos {
+        visibility: visible;
     }
 }

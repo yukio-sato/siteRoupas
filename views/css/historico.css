@@ -56,7 +56,7 @@ body {
 }
 
 /* BOTÕES */
-.BuyNike, .BuyAdidas, .BuyLacoste {
+.BuyNike, .BuyAdidas, .BuyLacoste, .BuyMore {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.726);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -80,6 +80,10 @@ body {
 
 .BuyLacoste {
     background-color: rgb(6, 199, 22);
+}
+
+.BuyMore {
+    background-color:  rgb(0, 177, 212);
 }
 
 /* FONTES */

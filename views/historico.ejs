@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="css/media/logo.png">
     <link rel="stylesheet" href="css/geral.css">
-    <link rel="stylesheet" href="css/buy.css">
+    <link rel="stylesheet" href="css/historico.css">
 
     <!-- FONTE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,9 +15,6 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
 
-    <!-- JavaSript -->    
-    <script src="js/select.js"></script>
-    <script src="js/hamburguer.js"></script>
     <title>Detalhes do Produto</title>
 </head>
 
@@ -32,14 +29,7 @@
                 <img id="h-icon" src="css/media/logo.png" alt="Logo">
                 <img id="h-logotxt" src="css/media/logo escrita.png" alt="Ilha das True">
             </div>
-            <% if (login != 'false'){ %>
-                <form action="historico" method="post">
-                    <input type="hidden" name="logged" value="<%= login %>">
-                    <button style="background-color: transparent;border: none;">
-                        <img id="menu" src="css/media/restore.png">
-                    </button>
-                </form>
-            <% } %>
+            <img id="menu" src="css/media/restore.png" onclick="window.location.href = '#'">
             <img id="menu" src="css/media/instagram2.png" onclick="window.location.href='https://www.instagram.com/ilhadastrue/'">
             <a href="javascript:void(0);" onclick="Menu()">
                 <img id="menu2" src="css/media/hmbrgr.png" alt="hmburgr">
@@ -47,13 +37,9 @@
             <% if ($logged == 'false'){ %>
                 <form action="entrar" method="get">
                     <button class="CDbtn"> Entrar </button>
-                </form>
             <% } else { %>
-                <form action="/produto" method="post">
+                <form action="/" method="post">
                     <input type="hidden" name="logged" value="false">
-                    <input type="hidden" name="viewing" value="false">
-                    <input type="hidden" name="hiddenVl" value="<%= data[0].nm_roupa %>">
-                    <input type="hidden" name="hiddenVl3" value="<%= data[0].cat_roupa %>">
                     <button class="CDbtn"> Sair </button>
                 </form>
             <% } %>
@@ -85,48 +71,40 @@
             <button id="back">Voltar para o Inicio</button>
         </form>
 
-        <div id="BuyContent">
-            <div id="ImgContent">
-                <% $urlCd = 0; %>
-                <% url.forEach((urlImg)=> { $urlCd++; %>
-                    <% if ($urlCd == 1){ %>
-                        <img class="C-ImgBig" src="<%= urlImg %>" id="<%= $urlCd %>">
-                    <% } else { %>
-                        <img class="C-ImgBig" src="<%= urlImg %>" id="<%= $urlCd %>" hidden>
+        <h2>Peças Visualizadas</h2>
+        <p>Mostramos apenas as seis peças mais recentes</p>
+
+        <div id="RoupasSecao">
+            <%if (data != 'Vazio'){
+                $numberClothe = 0;
+                data.forEach((entry)=> {
+                if ($numberClothe < 6){ $numberClothe++; %>
+                    <form id="Roupas" action="produto" method="post">
+                        <img src="<%= entry.url_roupa %>" alt="camiseta da <%= entry.cat_roupa %>" id="RoupaImg">
+                        <input type="hidden" name="logged" value="<%= login %>">
+                            <input type="hidden" name="viewing" value="true">
+                        <input type="hidden" name="hiddenVl" value="<%= entry.nm_roupa %>">
+                        <input type="hidden" name="hiddenVl3" value="<%= entry.cat_roupa %>">
+                        <%= entry.nm_roupa %>
+                        <h3>R$<%= entry.vl_roupa %></h3>
+                        <% if (entry.cat_roupa != 'Nike' && entry.cat_roupa != 'Adidas' && entry.cat_roupa != 'Lacoste'){ %>
+                            <button class="BuyMore">Ver Produto</button>
+                        <% } else { %>
+                            <button class="Buy<%= entry.cat_roupa %>">Ver Produto</button>
+                        <% } %>
+                    </form>
                     <% } %>
-                <% }); %>
-            </div>
-            <div id="cdRoupa">
-                <div id="content">
-                    <p class="product" id="product"><%= data[0].nm_roupa %></p>
-                    <p class="product" id="marked">Marca: <%= data[0].cat_roupa %></p>
-                    <h1>R$<%= data[0].vl_roupa %></h1>
-                </div>
-                <div id="content">
-                    <p>Tamanho da peça</p>
-                    <% size.forEach((tam)=> {%>
-                        <button class="size"><%= tam %></button>
-                    <% }); %>
-                </div>
-                <div id="content">
-                    <p>Cor</p>
-                    <% $i = 0;
-                    color.forEach((cor)=> { $i++; %>
-                        <button class="color" id="<%= $i %>"><%= cor %></button>
-                    <% }); %>
-                </div>
-                <div id="content">
-                    <p>Finalização</p>
-                    <button class="Btn2" id="end">Finalizar Compra</button>
-                    <p>Para sua segurança a compra sera finalizada pelo WhatsApp</p>
-                </div>
-            </div>
+                <% }) %>
+            <% } %>
         </div>
     </div>
+
     <div id="footer">
         Site desenvolvido por<a href="https://github.com/niButera">Nicolas Butera</a>e<a
             href="https://github.com/yukio-sato">Yukio Sato</a>
     </div>
+
+    <script src="js/hamburguer.js"></script>
 </body>
 
 </html>

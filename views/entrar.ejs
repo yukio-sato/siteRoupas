@@ -26,12 +26,12 @@
             <form id="box" action="userLog" method="post">
                 <h1> Entre </h1>
                 <p> Entre em sua conta</p>
-                <input placeholder="E-Mail" id="email" name="email" type="text" class="ImputBox validate" required>
+                <input placeholder="E-Mail" id="email" name="email" type="email" class="ImputBox validate" required>
                 <h1 class="alerta"><%= msg %></h1>
-                <input placeholder="Senha" id="senha" name="senha" type="text" class="ImputBox validate" required>
+                <input placeholder="Senha" id="senha" name="senha" type="password" class="ImputBox validate" required>
                 <button id="done">Entrar</button>
 
-                <p> Ainda não possuí um cadastro? <a onclick="history.back()">Cadastre-se</a></p>
+                <p> Ainda não possuí um cadastro? <a href="cadastrar">Cadastre-se</a></p>
             </form>
         </div>
         <button id="back" onclick="location.href='/'">Voltar para o Inicio</button>
